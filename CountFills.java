@@ -106,6 +106,7 @@ public class CountFills {
 			}
 		}
 		System.out.print("------------------------------------------------------------------\n");
+		int isEmptyCount = 0;
 
 		for (i = 0; i < 10; i++) {
 			for( x = 0; x < 10; x++ ) {
@@ -115,9 +116,15 @@ public class CountFills {
 					}
 					System.out.print("" + yZeroOneCount[i][x] + " ");
 				} else {
-					System.out.print("   ");
+					isEmptyCount++;
+					if (isEmptyCount < 10) {
+						System.out.print("   ");
+					} else {
+						System.exit(0);
+					}
 				}
 			}
+			isEmptyCount = 0;
 			System.out.print("\n");
 		}
 	}
