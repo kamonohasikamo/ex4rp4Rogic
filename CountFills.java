@@ -63,35 +63,25 @@ public class CountFills {
 			}
 		}
 
-		for (j = 0; j < 10; j++) {
+		// yについても、xと同様にやっていく
+		for (i = 0; i < 10; i++) {
 			y = 0;
-			ZeroOrOne = 0; /* 0 か 1 のどちらについて数えるのか？ 最初は 0 から */
-			while(y < 10 && c[y][j] == ZeroOrOne) {
-				yZeroOneCount[0][j]++;
-				y++;
-			}
-			/* ここで x の値は 0 に戻さないでそのままにする */
-			ZeroOrOne = 1;
-			while(y < 10 && c[y][j] == ZeroOrOne) {
-				yZeroOneCount[1][j]++;
-				y++;
-			}
-			/* ここで x の値は 0 に戻さないでそのままにする */
-			ZeroOrOne = 0;
-			while(y < 10 && c[y][j] == ZeroOrOne) {
-				yZeroOneCount[2][j]++;
-				y++;
-			}
-			/* ここで x の値は 0 に戻さないでそのままにする */
-			ZeroOrOne = 1;
-			while(y < 10 && c[y][j] == ZeroOrOne) {
-				yZeroOneCount[3][j]++;
-				y++;
+			ZeroOrOne = 1; /* 0 か 1 のどちらについて数えるのか？ 最初は 0 から */
+			j = 0;
+			while (j <= 10) {
+				if (ZeroOrOne == 0) { // ここで最初 1 -> 0 に切り替わる
+					ZeroOrOne = 1;
+				} else {
+					ZeroOrOne = 0;
+				}
+				while (y < 10 && c[y][i] == ZeroOrOne) {
+					yZeroOneCount[j][i]++;
+					y++;
+				}
+				j++;
 			}
 		}
-		
 
-		
 		//======================================================
 		// ShowRogic
 		//======================================================
@@ -115,36 +105,14 @@ public class CountFills {
 		}
 		System.out.print("------------------------------------------------------------------\n");
 
-		for( x = 0; x < 10; x++ ) {
-			if (yZeroOneCount[0][x] < 10) {
-				System.out.print(" ");
+		for (i = 0; i < 10; i++) {
+			for( x = 0; x < 10; x++ ) {
+				if (yZeroOneCount[i][x] < 10) {
+					System.out.print(" ");
+				}
+				System.out.print("" + yZeroOneCount[i][x] + " ");
 			}
-			System.out.print("" + yZeroOneCount[0][x] + " ");
+			System.out.print("\n");
 		}
-		System.out.print("\n");
-
-		for(x = 0; x < 10; x++ ) {
-			if (yZeroOneCount[1][x] < 10) {
-				System.out.print(" ");
-			}
-			System.out.print("" + yZeroOneCount[1][x] + " ");
-		}
-		System.out.print("\n");
-
-		for(x = 0; x < 10; x++ ) {
-			if (yZeroOneCount[2][x] < 10) {
-				System.out.print(" ");
-			}
-			System.out.print("" + yZeroOneCount[2][x] + " ");
-		}
-		System.out.print("\n");
-
-		for(x = 0; x < 10; x++ ) {
-			if (yZeroOneCount[3][x] < 10) {
-				System.out.print(" ");
-			}
-			System.out.print("" + yZeroOneCount[3][x] + " ");
-		}
-		System.out.print("\n");
 	}
 }
