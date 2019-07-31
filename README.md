@@ -10,7 +10,7 @@
   Windows10
 
 ## How to Compile
-```
+```java
  javac CountFills.java
  java CountFills
 ```
