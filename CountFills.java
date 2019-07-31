@@ -44,6 +44,12 @@ public class CountFills {
 				xZeroOneCount[i][2]++;
 				x++;
 			}
+			/* ここで x の値は 0 に戻さないでそのままにする */
+			ZeroOrOne = 1;
+			while(x < 10 && c[i][x] == ZeroOrOne) {
+				xZeroOneCount[i][3]++;
+				x++;
+			}
 		}
 
 		for (j = 0; j < 10; j++) {
@@ -63,6 +69,12 @@ public class CountFills {
 			ZeroOrOne = 0;
 			while(y < 10 && c[y][j] == ZeroOrOne) {
 				yZeroOneCount[2][j]++;
+				y++;
+			}
+			/* ここで x の値は 0 に戻さないでそのままにする */
+			ZeroOrOne = 1;
+			while(y < 10 && c[y][j] == ZeroOrOne) {
+				yZeroOneCount[3][j]++;
 				y++;
 			}
 		}
@@ -91,10 +103,16 @@ public class CountFills {
 			if (xZeroOneCount[y][2] < 10) {
 				System.out.print(" ");
 			}
-			System.out.print(xZeroOneCount[y][2]);
+			System.out.print(xZeroOneCount[y][2] + ",");
+
+			if (xZeroOneCount[y][3] < 10) {
+				System.out.print(" ");
+			}
+			System.out.print(xZeroOneCount[y][3]);
+
 			System.out.print("\n");
 		}
-		System.out.print("----------------------------------------------\n");
+		System.out.print("--------------------------------------------------\n");
 
 		for( x = 0; x < 10; x++ ) {
 			if (yZeroOneCount[0][x] < 10) {
@@ -117,6 +135,14 @@ public class CountFills {
 				System.out.print(" ");
 			}
 			System.out.print("" + yZeroOneCount[2][x] + " ");
+		}
+		System.out.print("\n");
+
+		for(x = 0; x < 10; x++ ) {
+			if (yZeroOneCount[3][x] < 10) {
+				System.out.print(" ");
+			}
+			System.out.print("" + yZeroOneCount[3][x] + " ");
 		}
 		System.out.print("\n");
 	}
