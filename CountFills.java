@@ -1,6 +1,8 @@
 public class CountFills {
 	public static void main(String args[]) {
-
+		//======================================================
+		// Input Data
+		//======================================================
 		int c[][] = { {0,0,0,0,0,0,0,0,0,0},
 									{0,1,1,1,1,1,1,1,1,0},
 									{0,0,0,0,0,0,0,1,0,0},
@@ -11,32 +13,49 @@ public class CountFills {
 									{0,0,0,0,0,0,1,1,0,0},
 									{0,0,0,0,0,0,0,1,0,0},
 									{0,0,0,0,0,0,0,0,0,0} };
+		
+		//======================================================
+		// Count variable
+		//======================================================
 		int xcount[] = new int[10];
 		int ycount[] = new int[10];
 		int x,y;
-		
-		xcount[0] = 0;
-		xcount[1] = 8;
-		xcount[2] = 1;
-		xcount[3] = 5;
-		xcount[4] = 3;
-		xcount[5] = 5;
-		xcount[6] = 1;
-		xcount[7] = 2;
-		xcount[8] = 1;
-		xcount[9] = 0;
 
-		ycount[0] = 0;
-		ycount[1] = 1;
-		ycount[2] = 4;
-		ycount[3] = 3;
-		ycount[4] = 3;
-		ycount[5] = 4;
-		ycount[6] = 2;
-		ycount[7] = 8;
-		ycount[8] = 1;
-		ycount[9] = 0;
+		//======================================================
+		// Count FirstOne
+		//======================================================
+
+		/* (UTF-8)解説：
+			→　方向は変数y、　↓　方向は変数xで取っている。
+			・xcountについて
+				→　方向は変数yで見れるので、外for文のyを使用する。
+				c[0][0]からc[0][10]までの1の個数をxcount[0]へ
+				c[1][0]からc[1][10]までの1の個数をxcount[1]へ
+				c[2][0]からc[2][10]までの1の個数をxcount[2]へ
+				...
+
+				とやっていくと、
+				c[yyyy][0]からc[yyyy][10]までの1の個数をxcount[yyyy]へ
+				のyyyyの部分が一致していることがわかる。
+				このyyyyをfor文で回してしまえばOK!
+			・ycountについて
+				xcountと同様に考える
+
+			上記2点を同時に処理したのが下の2重for文
+		*/
+		for (y = 0; y < 10; y++) {
+			for (x = 0; x < 10; x++) {
+				if (c[y][x] == 1) {
+					xcount[y]++;
+					ycount[x]++;
+				}
+			}
+		}
+
 		
+		//======================================================
+		// ShowRogic
+		//======================================================
 		for( y = 0; y < 10; y++ ) {
 				for( x = 0; x < 10; x++ ) {
 						System.out.print("" + c[y][x] + " ");
@@ -44,10 +63,13 @@ public class CountFills {
 				System.out.print(" || " + xcount[y]);
 				System.out.print("\n");
 		}
+
 		System.out.print("-------------------------\n");
+
 		for( x = 0; x < 10; x++ ) {
-				System.out.print("" + ycount[x] + " ");
+			System.out.print("" + ycount[x] + " ");
 		}
+
 		System.out.print("\n");
 	}
 }
