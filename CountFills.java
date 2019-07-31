@@ -21,6 +21,8 @@ public class CountFills {
 		int yZeroCount[] = new int[10];
 		int xNextOneCount[] = new int[10];
 		int yNextOneCount[] = new int[10];
+		int xNextZeroCount[] = new int[10];
+		int yNextZeroCount[] = new int[10];
 		int i, j, x,y;
 
 		//======================================================
@@ -37,6 +39,11 @@ public class CountFills {
 				xNextOneCount[i]++;
 				x++;
 			}
+			/* ここで x の値は 0 に戻さないでそのままにする */
+			while(x < 10 && c[i][x] == 0) {
+				xNextZeroCount[i]++;
+				x++;
+			}
 		}
 
 		for (j = 0; j < 10; j++) {
@@ -45,10 +52,14 @@ public class CountFills {
 				yZeroCount[j]++;
 				y++;
 			}
-			yNextOneCount[j] = 0;
 			/* ここで x の値は 0 に戻さないでそのままにする */
 			while(y < 10 && c[y][j] == 1 ) {
 				yNextOneCount[j]++;
+				y++;
+			}
+			/* ここで x の値は 0 に戻さないでそのままにする */
+			while(y < 10 && c[y][j] == 0) {
+				yNextZeroCount[j]++;
 				y++;
 			}
 		}
@@ -63,17 +74,24 @@ public class CountFills {
 				System.out.print(" " + c[y][x] + " ");
 			}
 			System.out.print(" || ");
+
 			if (xZeroCount[y] < 10) {
 				System.out.print(" ");
 			}
 			System.out.print(xZeroCount[y] + ",");
+
 			if (xNextOneCount[y] < 10) {
 				System.out.print(" ");
 			}
-			System.out.print(xNextOneCount[y]);
+			System.out.print(xNextOneCount[y] + ",");
+
+			if (xNextZeroCount[y] < 10) {
+				System.out.print(" ");
+			}
+			System.out.print(xNextZeroCount[y]);
 			System.out.print("\n");
 		}
-		System.out.print("-----------------------------------------\n");
+		System.out.print("----------------------------------------------\n");
 
 		for( x = 0; x < 10; x++ ) {
 			if (yZeroCount[x] < 10) {
@@ -88,6 +106,14 @@ public class CountFills {
 				System.out.print(" ");
 			}
 			System.out.print("" + yNextOneCount[x] + " ");
+		}
+		System.out.print("\n");
+
+		for(x = 0; x < 10; x++ ) {
+			if (yNextZeroCount[x] < 10) {
+				System.out.print(" ");
+			}
+			System.out.print("" + yNextZeroCount[x] + " ");
 		}
 		System.out.print("\n");
 	}
