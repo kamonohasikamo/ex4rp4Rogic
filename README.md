@@ -11,6 +11,6 @@
 
 ## How to Compile
 ```java
- javac CountFills.java
+ javac -encoding UTF-8 CountFills.java // UTF-8でエラーが出ないようにする
  java CountFills
 ```
