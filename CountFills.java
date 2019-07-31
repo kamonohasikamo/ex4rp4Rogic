@@ -17,49 +17,52 @@ public class CountFills {
 		//======================================================
 		// Count variable
 		//======================================================
-		int xZeroCount[] = new int[10];
-		int yZeroCount[] = new int[10];
-		int xNextOneCount[] = new int[10];
-		int yNextOneCount[] = new int[10];
-		int xNextZeroCount[] = new int[10];
-		int yNextZeroCount[] = new int[10];
-		int i, j, x,y;
+		int ZeroOrOne = 0;
+		int xZeroOneCount[][] = new int[10][10];
+		int yZeroOneCount[][] = new int[10][10];
+		int i, j, x, y;
 
 		//======================================================
 		// Count FirstOne
 		//======================================================
 		for (i = 0; i < 10; i++) {
 			x = 0;
-			while(x < 10 && c[i][x] == 0 ) {
-				xZeroCount[i]++;
+			ZeroOrOne = 0; /* 0 か 1 のどちらについて数えるのか？ 最初は 0 から */
+			while(x < 10 && c[i][x] == ZeroOrOne) {
+				xZeroOneCount[i][0]++;
 				x++;
 			}
 			/* ここで x の値は 0 に戻さないでそのままにする */
-			while(x < 10 && c[i][x] == 1 ) {
-				xNextOneCount[i]++;
+			ZeroOrOne = 1;
+			while(x < 10 && c[i][x] == ZeroOrOne) {
+				xZeroOneCount[i][1]++;
 				x++;
 			}
 			/* ここで x の値は 0 に戻さないでそのままにする */
-			while(x < 10 && c[i][x] == 0) {
-				xNextZeroCount[i]++;
+			ZeroOrOne = 0;
+			while(x < 10 && c[i][x] == ZeroOrOne) {
+				xZeroOneCount[i][2]++;
 				x++;
 			}
 		}
 
 		for (j = 0; j < 10; j++) {
 			y = 0;
-			while(y < 10 && c[y][j] == 0 ) {
-				yZeroCount[j]++;
+			ZeroOrOne = 0; /* 0 か 1 のどちらについて数えるのか？ 最初は 0 から */
+			while(y < 10 && c[y][j] == ZeroOrOne) {
+				yZeroOneCount[0][j]++;
 				y++;
 			}
 			/* ここで x の値は 0 に戻さないでそのままにする */
-			while(y < 10 && c[y][j] == 1 ) {
-				yNextOneCount[j]++;
+			ZeroOrOne = 1;
+			while(y < 10 && c[y][j] == ZeroOrOne) {
+				yZeroOneCount[1][j]++;
 				y++;
 			}
 			/* ここで x の値は 0 に戻さないでそのままにする */
-			while(y < 10 && c[y][j] == 0) {
-				yNextZeroCount[j]++;
+			ZeroOrOne = 0;
+			while(y < 10 && c[y][j] == ZeroOrOne) {
+				yZeroOneCount[2][j]++;
 				y++;
 			}
 		}
@@ -75,45 +78,45 @@ public class CountFills {
 			}
 			System.out.print(" || ");
 
-			if (xZeroCount[y] < 10) {
+			if (xZeroOneCount[y][0] < 10) {
 				System.out.print(" ");
 			}
-			System.out.print(xZeroCount[y] + ",");
+			System.out.print(xZeroOneCount[y][0] + ",");
 
-			if (xNextOneCount[y] < 10) {
+			if (xZeroOneCount[y][1] < 10) {
 				System.out.print(" ");
 			}
-			System.out.print(xNextOneCount[y] + ",");
+			System.out.print(xZeroOneCount[y][1] + ",");
 
-			if (xNextZeroCount[y] < 10) {
+			if (xZeroOneCount[y][2] < 10) {
 				System.out.print(" ");
 			}
-			System.out.print(xNextZeroCount[y]);
+			System.out.print(xZeroOneCount[y][2]);
 			System.out.print("\n");
 		}
 		System.out.print("----------------------------------------------\n");
 
 		for( x = 0; x < 10; x++ ) {
-			if (yZeroCount[x] < 10) {
+			if (yZeroOneCount[0][x] < 10) {
 				System.out.print(" ");
 			}
-			System.out.print("" + yZeroCount[x] + " ");
+			System.out.print("" + yZeroOneCount[0][x] + " ");
 		}
 		System.out.print("\n");
 
 		for(x = 0; x < 10; x++ ) {
-			if (yNextOneCount[x] < 10) {
+			if (yZeroOneCount[1][x] < 10) {
 				System.out.print(" ");
 			}
-			System.out.print("" + yNextOneCount[x] + " ");
+			System.out.print("" + yZeroOneCount[1][x] + " ");
 		}
 		System.out.print("\n");
 
 		for(x = 0; x < 10; x++ ) {
-			if (yNextZeroCount[x] < 10) {
+			if (yZeroOneCount[2][x] < 10) {
 				System.out.print(" ");
 			}
-			System.out.print("" + yNextZeroCount[x] + " ");
+			System.out.print("" + yZeroOneCount[2][x] + " ");
 		}
 		System.out.print("\n");
 	}
