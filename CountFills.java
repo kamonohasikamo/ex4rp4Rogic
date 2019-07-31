@@ -17,38 +17,26 @@ public class CountFills {
 		//======================================================
 		// Count variable
 		//======================================================
-		int xcount[] = new int[10];
-		int ycount[] = new int[10];
-		int x,y;
+		int xZeroCount[] = new int[10];
+		int yZeroCount[] = new int[10];
+		int i, j, x, y;
 
 		//======================================================
 		// Count FirstOne
 		//======================================================
+		for (i = 0; i < 10; i++) {
+			x = 0;
+			while(x < 10 && c[i][x] == 0 ) {
+				xZeroCount[i]++;
+				x++;
+			}
+		}
 
-		/* (UTF-8)解説：
-			→　方向は変数y、　↓　方向は変数xで取っている。
-			・xcountについて
-				→　方向は変数yで見れるので、外for文のyを使用する。
-				c[0][0]からc[0][10]までの1の個数をxcount[0]へ
-				c[1][0]からc[1][10]までの1の個数をxcount[1]へ
-				c[2][0]からc[2][10]までの1の個数をxcount[2]へ
-				...
-
-				とやっていくと、
-				c[yyyy][0]からc[yyyy][10]までの1の個数をxcount[yyyy]へ
-				のyyyyの部分が一致していることがわかる。
-				このyyyyをfor文で回してしまえばOK!
-			・ycountについて
-				xcountと同様に考える
-
-			上記2点を同時に処理したのが下の2重for文
-		*/
-		for (y = 0; y < 10; y++) {
-			for (x = 0; x < 10; x++) {
-				if (c[y][x] == 1) {
-					xcount[y]++;
-					ycount[x]++;
-				}
+		for (j = 0; j < 10; j++) {
+			y = 0;
+			while(y < 10 && c[y][j] == 0) {
+				yZeroCount[j]++;
+				y++;
 			}
 		}
 
@@ -57,19 +45,23 @@ public class CountFills {
 		// ShowRogic
 		//======================================================
 		for( y = 0; y < 10; y++ ) {
-				for( x = 0; x < 10; x++ ) {
-						System.out.print("" + c[y][x] + " ");
-				}
-				System.out.print(" || " + xcount[y]);
-				System.out.print("\n");
+			for( x = 0; x < 10; x++ ) {
+				System.out.print(" " + c[y][x] + " ");
+			}
+			System.out.print(" || ");
+			if (xZeroCount[y] < 10) {
+				System.out.print(" ");
+			}
+			System.out.print(xZeroCount[y]);
+			System.out.print("\n");
 		}
-
-		System.out.print("-------------------------\n");
-
+		System.out.print("-----------------------------------------\n");
 		for( x = 0; x < 10; x++ ) {
-			System.out.print("" + ycount[x] + " ");
+			if (yZeroCount[x] < 10) {
+				System.out.print(" ");
+			}
+			System.out.print("" + yZeroCount[x] + " ");
 		}
-
 		System.out.print("\n");
 	}
 }
