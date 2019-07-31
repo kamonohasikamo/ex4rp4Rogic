@@ -18,7 +18,7 @@ public class CountFills {
 		// Count variable
 		//======================================================
 		int ZeroOrOne = 0;
-		int xZeroOneCount[][] = new int[10][10];
+		int xZeroOneCount[][] = new int[10][11]; // 表示の最後の「,」をそろえるために1つ大きめに作成
 		int yZeroOneCount[][] = new int[10][10];
 		int i, j, x, y;
 
@@ -90,27 +90,33 @@ public class CountFills {
 				System.out.print(" " + c[y][x] + " ");
 			}
 			System.out.print(" || ");
-
 			for (i = 0; i < 10; i++) {
-				if (xZeroOneCount[y][i] < 10) {
-					System.out.print(" ");
-				}
-				if (i != 9) { // 右に表示する部分で、一番端っこは「,」がいらないから取り除く処理
-					System.out.print(xZeroOneCount[y][i] + ",");
-				} else {
+				if (xZeroOneCount[y][i] != 0) {
+					if (xZeroOneCount[y][i] < 10) {
+						System.out.print(" ");
+					}
 					System.out.print(xZeroOneCount[y][i]);
+					if (xZeroOneCount[y][i + 1] != 0) {
+						System.out.print(",");
+					}
+				} else {
+					System.out.print("\n");
+					break;
 				}
 			}
-			System.out.print("\n");
 		}
 		System.out.print("------------------------------------------------------------------\n");
 
 		for (i = 0; i < 10; i++) {
 			for( x = 0; x < 10; x++ ) {
-				if (yZeroOneCount[i][x] < 10) {
-					System.out.print(" ");
+				if (yZeroOneCount[i][x] != 0) {
+					if (yZeroOneCount[i][x] < 10) {
+						System.out.print(" ");
+					}
+					System.out.print("" + yZeroOneCount[i][x] + " ");
+				} else {
+					System.out.print("   ");
 				}
-				System.out.print("" + yZeroOneCount[i][x] + " ");
 			}
 			System.out.print("\n");
 		}
